@@ -5,6 +5,9 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VTTLib\VTTLib\VTTLib.csproj" />
+    <PackageReference Include="BiMap" Version="2.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VTСLib\VTСLib\VTСLib.csproj" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d0qv0pprpewr8"]
+
+[ext_resource type="Script" uid="uid://vax8apvgsdyi" path="res://LabeledOptionControll.cs" id="1_k00au"]
+
+[node name="LabeledOptionControll" type="Control" unique_id=743639652]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 6
+script = ExtResource("1_k00au")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=765338869]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1005596273]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer" unique_id=2103338857]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4

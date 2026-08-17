@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VTTLib\VTTLib\VTTLib.csproj" />
+    <ProjectReference Include="..\VTСLib\VTСLib\VTСLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
