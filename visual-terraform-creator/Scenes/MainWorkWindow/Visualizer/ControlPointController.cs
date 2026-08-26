@@ -62,18 +62,23 @@ namespace VisualTerraformCreator.Scenes.MainWorkWindow.Visualizer
 			}
 		}
 
-		public void AddControlPoint()
+		public (ControlPoint? topControlPoint, ControlPoint? sideControlPoint) AddControlPoint()
 		{
-			if (_isControlPointsSet) return;
-			if (_stickedControlPointShadow == null) return;
+			if (_isControlPointsSet) return (null, null);
+			if (_stickedControlPointShadow == null) return (null, null);
+
+			ControlPoint topControlPoint;
+			ControlPoint sideControlPoint;
 
 			_controlPointShadow.Visible = false;
 			_isControlPointsSet = true;
-			ControlPoint controlPoint = ControlPoint.Instantiate(true, _stickedControlPointShadow.StickedPoint, _mainNode, new(_controlPointScale, _controlPointScale));
-			controlPoint.InitActualControlPoint(ControlPoint.AllowedMovingAxisEnum.X, _stickedControlPointShadow.Rect.Position.X, _stickedControlPointShadow.Rect.End.X, _zoomProvider);
+			topControlPoint = ControlPoint.Instantiate(true, _stickedControlPointShadow.StickedPoint, _mainNode, new(_controlPointScale, _controlPointScale));
+			topControlPoint.InitActualControlPoint(ControlPoint.AllowedMovingAxisEnum.X, _stickedControlPointShadow.Rect.Position.X, _stickedControlPointShadow.Rect.End.X, _zoomProvider);
 
-			controlPoint = ControlPoint.Instantiate(true, _stickedControlPointShadow.Rect.Position + new Vector2(0, _stickedControlPointShadow.Rect.Size.Y), _mainNode, new(_controlPointScale, _controlPointScale));
-			controlPoint.InitActualControlPoint(ControlPoint.AllowedMovingAxisEnum.Y, _stickedControlPointShadow.Rect.Position.Y, _stickedControlPointShadow.Rect.End.Y, _zoomProvider);
+			sideControlPoint = ControlPoint.Instantiate(true, _stickedControlPointShadow.Rect.Position + new Vector2(0, _stickedControlPointShadow.Rect.Size.Y), _mainNode, new(_controlPointScale, _controlPointScale));
+			sideControlPoint.InitActualControlPoint(ControlPoint.AllowedMovingAxisEnum.Y, _stickedControlPointShadow.Rect.Position.Y, _stickedControlPointShadow.Rect.End.Y, _zoomProvider);
+
+			return (topControlPoint, sideControlPoint);
 		}
 
 		private void ShowShadowOnPointP(Vector2 RectPointP, Rect2 rect)

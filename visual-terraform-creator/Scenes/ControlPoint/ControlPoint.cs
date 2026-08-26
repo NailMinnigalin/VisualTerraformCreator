@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using VisualTerraformCreator.Abstract;
 
 public partial class ControlPoint : Control
@@ -8,6 +9,11 @@ public partial class ControlPoint : Control
 		X,
 		Y
 	}
+
+	/// <summary>
+	/// Action that called when point is moved. Passes intself into it.
+	/// </summary>
+	public Action<ControlPoint>? OnMoveAction;
 
 	private static string _controlPointScenePath = "res://Scenes/ControlPoint/ControlPoint.tscn";
 
@@ -85,6 +91,7 @@ public partial class ControlPoint : Control
 		newCenterPosition = RestrictAllowedMotion(newCenterPosition);
 
 		CenterPosition = newCenterPosition;
+		OnMoveAction?.Invoke(this);
 	}
 
 	private Vector2 RestrictAllowedMotion(Vector2 newCenterPosition)

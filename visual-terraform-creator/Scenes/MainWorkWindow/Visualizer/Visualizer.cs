@@ -10,6 +10,8 @@ public partial class Visualizer : Node2D
 	private Rect2 _plateTypeBRect;
 	private PlateRectsRenderer? _plateRectsRenderer = default!;
 	private ControlPointController _controlPointPlacementController = default!;
+	private ControlPoint? _topControlPoint;
+	private ControlPoint? _sideControlPoint;
 
 	public void Initialize(IZoomProvider zoomProvider, ITectonicPlateType plateTypeA, ITectonicPlateType plateTypeB, PlateBoundaryType plateBoundaryType)
 	{
@@ -37,7 +39,17 @@ public partial class Visualizer : Node2D
 		}
 		else if (@event.IsActionPressed("AddControlPoint"))
 		{
-			_controlPointPlacementController.AddControlPoint();
+			var controlPoints = _controlPointPlacementController.AddControlPoint();
+			if (_plateRectsRenderer != null && controlPoints.topControlPoint != null && controlPoints.sideControlPoint != null)
+			{
+				_topControlPoint = controlPoints.topControlPoint;
+				_sideControlPoint = controlPoints.sideControlPoint;
+				_plateRectsRenderer.SetControlPointsOnPlate(_topControlPoint, _sideControlPoint);
+				_topControlPoint.OnMoveAction += (ControlPoint controlPoint) => _plateRectsRenderer.SetControlPointsOnPlate(_topControlPoint, _sideControlPoint);
+				_sideControlPoint.OnMoveAction += (ControlPoint controlPoint) => _plateRectsRenderer.SetControlPointsOnPlate(_topControlPoint, _sideControlPoint);
+				GD.Print($"Top control point:{_topControlPoint.CenterPosition}");
+				GD.Print($"Side control point:{_sideControlPoint.CenterPosition}");
+			}
 		}
 	}
 
