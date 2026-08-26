@@ -1,25 +1,26 @@
 [gd_scene format=3 uid="uid://c5r1fpb4eohl4"]
 
-[ext_resource type="Script" uid="uid://b01wc715x688n" path="res://Visualizer.cs" id="1_ipl5k"]
-[ext_resource type="Script" uid="uid://c0kr6fg2pwf7c" path="res://MainWorkWindow.cs" id="1_mjgwo"]
-[ext_resource type="Script" uid="uid://ceewgbpwqtprx" path="res://Camera2d.cs" id="2_i53ku"]
-[ext_resource type="PackedScene" uid="uid://d0qv0pprpewr8" path="res://LabeledOptionControll.tscn" id="3_jknlw"]
+[ext_resource type="Script" uid="uid://c0kr6fg2pwf7c" path="res://Scenes/MainWorkWindow/MainWorkWindow.cs" id="1_cgud8"]
+[ext_resource type="Script" uid="uid://bu4dtmt1pgrjp" path="res://Scenes/MainWorkWindow/Visualizer/Visualizer.cs" id="2_cgud8"]
+[ext_resource type="Script" uid="uid://ceewgbpwqtprx" path="res://Scenes/MainWorkWindow/Camera2d.cs" id="3_g2uva"]
+[ext_resource type="PackedScene" uid="uid://d0qv0pprpewr8" path="res://Scenes/LabeledOptionControll/LabeledOptionControll.tscn" id="4_3guyd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jknlw"]
 bg_color = Color(0.22, 0.22, 0.22, 1)
 
-[node name="MainWorkWindow" type="Control" unique_id=1677983123 node_paths=PackedStringArray("PlateTypeALabeledOption", "PlateTypeBLabeledOption", "Visualizer", "BoundryTypeLabeledOption")]
+[node name="MainWorkWindow" type="Control" unique_id=1677983123 node_paths=PackedStringArray("PlateTypeALabeledOption", "PlateTypeBLabeledOption", "Visualizer", "BoundryTypeLabeledOption", "Camera2d")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mjgwo")
+script = ExtResource("1_cgud8")
 PlateTypeALabeledOption = NodePath("HSplitContainer/PanelContainer2/VBoxContainer/PlateATypeLabeledOptionControll")
 PlateTypeBLabeledOption = NodePath("HSplitContainer/PanelContainer2/VBoxContainer/PlateBTypeLabeledOptionControll")
 Visualizer = NodePath("HSplitContainer/PanelContainer/SubViewportContainer/SubViewport/Visualizer")
 BoundryTypeLabeledOption = NodePath("HSplitContainer/PanelContainer2/VBoxContainer/BoundryTypeLabeledOptionControll")
+Camera2d = NodePath("HSplitContainer/PanelContainer/SubViewportContainer/SubViewport/Camera2D")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=414220284]
 layout_mode = 1
@@ -43,10 +44,11 @@ size = Vector2i(570, 648)
 render_target_update_mode = 4
 
 [node name="Visualizer" type="Node2D" parent="HSplitContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1328702245]
-script = ExtResource("1_ipl5k")
+script = ExtResource("2_cgud8")
+ControlPointScenePath = "res://Scenes/ControlPoint/ControlPoint.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="HSplitContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1828808004]
-script = ExtResource("2_i53ku")
+script = ExtResource("3_g2uva")
 
 [node name="PanelContainer2" type="PanelContainer" parent="HSplitContainer" unique_id=1697411044]
 layout_mode = 2
@@ -56,14 +58,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jknlw")
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelContainer2" unique_id=1843259995]
 layout_mode = 2
 
-[node name="PlateATypeLabeledOptionControll" parent="HSplitContainer/PanelContainer2/VBoxContainer" unique_id=743639652 instance=ExtResource("3_jknlw")]
+[node name="PlateATypeLabeledOptionControll" parent="HSplitContainer/PanelContainer2/VBoxContainer" unique_id=743639652 instance=ExtResource("4_3guyd")]
 layout_mode = 2
 LabelText = "Plate A type:"
 
-[node name="PlateBTypeLabeledOptionControll" parent="HSplitContainer/PanelContainer2/VBoxContainer" unique_id=928181328 instance=ExtResource("3_jknlw")]
+[node name="PlateBTypeLabeledOptionControll" parent="HSplitContainer/PanelContainer2/VBoxContainer" unique_id=928181328 instance=ExtResource("4_3guyd")]
 layout_mode = 2
 LabelText = "Plate B type:"
 
-[node name="BoundryTypeLabeledOptionControll" parent="HSplitContainer/PanelContainer2/VBoxContainer" unique_id=1554897961 instance=ExtResource("3_jknlw")]
+[node name="BoundryTypeLabeledOptionControll" parent="HSplitContainer/PanelContainer2/VBoxContainer" unique_id=1554897961 instance=ExtResource("4_3guyd")]
 layout_mode = 2
 LabelText = "Boundry type:"

@@ -1,11 +1,14 @@
 using Godot;
+using VisualTerraformCreator.Abstract;
 
-public partial class Camera2d : Camera2D
+public partial class Camera2d : Camera2D, IZoomProvider
 {
 	[Export]
 	public float ZoomSpeed = 0.1f;
 
 	private bool _isPanning = false;
+
+	public Vector2 CurrentZoom => Zoom;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

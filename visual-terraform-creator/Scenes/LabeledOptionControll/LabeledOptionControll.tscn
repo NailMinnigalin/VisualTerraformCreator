@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0qv0pprpewr8"]
 
-[ext_resource type="Script" uid="uid://vax8apvgsdyi" path="res://LabeledOptionControll.cs" id="1_k00au"]
+[ext_resource type="Script" uid="uid://vax8apvgsdyi" path="res://Scenes/LabeledOptionControll/LabeledOptionControll.cs" id="1_k00au"]
 
 [node name="LabeledOptionControll" type="Control" unique_id=743639652]
 layout_mode = 3

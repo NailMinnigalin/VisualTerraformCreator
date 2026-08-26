@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://w0v1scd5w8sn"]
+
+[ext_resource type="Script" uid="uid://d4dmehjgetasv" path="res://Scenes/ControlPoint/ControlPoint.cs" id="1_0w53k"]
+[ext_resource type="Texture2D" uid="uid://ccvxino1hlrph" path="res://point.png" id="1_s8oxb"]
+
+[node name="ControlPoint" type="Control" unique_id=524194271]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 1
+script = ExtResource("1_0w53k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=465692683]
+texture = ExtResource("1_s8oxb")
+offset = Vector2(50, 50)

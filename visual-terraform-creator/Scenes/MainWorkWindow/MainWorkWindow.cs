@@ -2,6 +2,7 @@ using BiMap;
 using Godot;
 using System;
 using System.Collections.Generic;
+using VisualTerraformCreator.Scenes.MainWorkWindow.Visualizer;
 using VTСLib;
 
 public partial class MainWorkWindow : Control
@@ -14,6 +15,8 @@ public partial class MainWorkWindow : Control
 	public Visualizer Visualizer = default!;
 	[Export]
 	public LabeledOptionControll BoundryTypeLabeledOption = default!;
+	[Export]
+	public Camera2d Camera2d = default!;
 
 	private ITectonicPlateType _plateTypeA = new OceanicPlateType();
 	private ITectonicPlateType _plateTypeB = new ContinentalPlateType();
@@ -27,9 +30,7 @@ public partial class MainWorkWindow : Control
 		InitBiMap(_plateTypeId, GetPossiblePlateTypeList());
 		InitBiMap(_boundryTypeId, GetPossiblePlateBoundaryTypeList());
 		InitLabeledOptions();
-		Visualizer.SetPlateTypeA(_plateTypeA);
-		Visualizer.SetPlateTypeB(_plateTypeB);
-		Visualizer.SetPlateBoundaryType(_plateBoundryType);
+		Visualizer.Initialize(Camera2d, _plateTypeA, _plateTypeB, _plateBoundryType);
 	}
 
 	private void InitBiMap<TLeft>(BiMap<TLeft, int> biMap, List<TLeft> itemList)
